@@ -4,6 +4,6 @@ navbar:
   left:
     - text: "Home"
       href: index.html
-    - text: "Reproducible workflow"
+    - text: "Teaching material"
       href: Chap_1_part_B_bookdown.html
 
