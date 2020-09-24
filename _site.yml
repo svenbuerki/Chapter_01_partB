@@ -1,0 +1,9 @@
+name: "EEB603"
+navbar:
+  title: "Reproducible Science"
+  left:
+    - text: "Home"
+      href: index.html
+    - text: "Reproducible workflow"
+      href: Chap_1_part_B_bookdown.html
+
