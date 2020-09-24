@@ -1,4 +1,4 @@
-This is pdfTeX, Version 3.14159265-2.6-1.40.18 (TeX Live 2017) (preloaded format=pdflatex 2017.5.23)  24 SEP 2020 15:48
+This is pdfTeX, Version 3.14159265-2.6-1.40.18 (TeX Live 2017) (preloaded format=pdflatex 2017.5.23)  24 SEP 2020 15:51
 entering extended mode
  restricted \write18 enabled.
  %&-line parsing enabled.
@@ -1471,7 +1471,7 @@ onts/type1/public/lm/lmcsc10.pfb></usr/local/texlive/2017/texmf-dist/fonts/type
 ></usr/local/texlive/2017/texmf-dist/fonts/type1/public/lm/lmtk10.pfb></usr/loc
 al/texlive/2017/texmf-dist/fonts/type1/public/lm/lmtt12.pfb></usr/local/texlive
 /2017/texmf-dist/fonts/type1/public/lm/lmtti10.pfb>
-Output written on Chap_1_part_B_bookdown.pdf (21 pages, 431243 bytes).
+Output written on Chap_1_part_B_bookdown.pdf (21 pages, 431241 bytes).
 PDF statistics:
  549 PDF objects out of 1000 (max. 8388607)
  501 compressed objects within 6 object streams
