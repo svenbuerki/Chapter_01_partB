@@ -11,7 +11,7 @@
 
 <meta name="author" content="Sven Buerki" />
 
-<meta name="date" content="2020-09-24" />
+<meta name="date" content="2020-09-25" />
 
 <title>EEB 603 – Chapter 1: Using the R Markdown language to promote Reproducible Science</title>
 
@@ -21,9 +21,13 @@
 <script src="site_libs/bootstrap-3.3.5/js/bootstrap.min.js"></script>
 <script src="site_libs/bootstrap-3.3.5/shim/html5shiv.min.js"></script>
 <script src="site_libs/bootstrap-3.3.5/shim/respond.min.js"></script>
+<script src="site_libs/jqueryui-1.11.4/jquery-ui.min.js"></script>
+<link href="site_libs/tocify-1.9.1/jquery.tocify.css" rel="stylesheet" />
+<script src="site_libs/tocify-1.9.1/jquery.tocify.js"></script>
 <script src="site_libs/navigation-1.1/tabsets.js"></script>
 <link href="site_libs/highlightjs-9.12.0/default.css" rel="stylesheet" />
 <script src="site_libs/highlightjs-9.12.0/highlight.js"></script>
+<script src="site_libs/kePrint-0.0.1/kePrint.js"></script>
 
 <style type="text/css">code{white-space: pre;}</style>
 <style type="text/css">
@@ -250,6 +254,69 @@ $(document).ready(function () {
 
 
 
+<style type="text/css">
+
+#TOC {
+  margin: 25px 0px 20px 0px;
+}
+@media (max-width: 768px) {
+#TOC {
+  position: relative;
+  width: 100%;
+}
+}
+
+@media print {
+.toc-content {
+  /* see https://github.com/w3c/csswg-drafts/issues/4434 */
+  float: right;
+}
+}
+
+.toc-content {
+  padding-left: 30px;
+  padding-right: 40px;
+}
+
+div.main-container {
+  max-width: 1200px;
+}
+
+div.tocify {
+  width: 20%;
+  max-width: 260px;
+  max-height: 85%;
+}
+
+@media (min-width: 768px) and (max-width: 991px) {
+  div.tocify {
+    width: 25%;
+  }
+}
+
+@media (max-width: 767px) {
+  div.tocify {
+    width: 100%;
+    max-width: none;
+  }
+}
+
+.tocify ul, .tocify li {
+  line-height: 20px;
+}
+
+.tocify-subheader .tocify-item {
+  font-size: 0.90em;
+}
+
+.tocify .list-group-item {
+  border-radius: 0px;
+}
+
+
+</style>
+
+
 
 </head>
 
@@ -257,6 +324,16 @@ $(document).ready(function () {
 
 
 <div class="container-fluid main-container">
+
+
+<!-- setup 3col/9col grid for toc_float and main content  -->
+<div class="row-fluid">
+<div class="col-xs-12 col-sm-4 col-md-3">
+<div id="TOC" class="tocify">
+</div>
+</div>
+
+<div class="toc-content col-xs-12 col-sm-8 col-md-9">
 
 
 
@@ -294,70 +371,10 @@ $(document).ready(function () {
 <h1 class="title toc-ignore">EEB 603 – Chapter 1: Using the R Markdown language to promote Reproducible Science</h1>
 <h3 class="subtitle">Part B: Tables, Figures and References with R bookdown and allied packages</h3>
 <h4 class="author">Sven Buerki</h4>
-<h4 class="date">2020-09-24</h4>
+<h4 class="date">2020-09-25</h4>
 
 </div>
 
-<div id="TOC">
-<ul>
-<li><a href="#aim"><span class="toc-section-number">1</span> Aim</a></li>
-<li><a href="#learning-outcomes"><span class="toc-section-number">2</span> Learning outcomes</a></li>
-<li><a href="#associated-files-supporting-this-tutorial"><span class="toc-section-number">3</span> Associated files supporting this tutorial</a></li>
-<li><a href="#set-your-r-markdown-environment"><span class="toc-section-number">4</span> Set your R Markdown environment</a><ul>
-<li><a href="#install-dependencies"><span class="toc-section-number">4.1</span> Install dependencies</a><ul>
-<li><a href="#r-packages"><span class="toc-section-number">4.1.1</span> R packages</a></li>
-<li><a href="#tex-distribution"><span class="toc-section-number">4.1.2</span> TeX distribution</a></li>
-<li><a href="#set-miktex-for-compiling-pdf-documents-on-windows-computers"><span class="toc-section-number">4.1.3</span> Set MiKTeX for compiling PDF documents on Windows computers</a></li>
-</ul></li>
-<li><a href="#yaml-metadata-section"><span class="toc-section-number">4.2</span> YAML metadata section</a><ul>
-<li><a href="#step-by-step-procedure"><span class="toc-section-number">4.2.1</span> Step-by-step procedure</a></li>
-<li><a href="#knitting-procedure"><span class="toc-section-number">4.2.2</span> Knitting procedure</a></li>
-</ul></li>
-<li><a href="#load-required-r-packages"><span class="toc-section-number">4.3</span> Load required R packages</a><ul>
-<li><a href="#step-by-step-procedure-1"><span class="toc-section-number">4.3.1</span> Step-by-step procedure</a></li>
-</ul></li>
-<li><a href="#generate-citation-file-of-r-packages-used-to-produce-the-report"><span class="toc-section-number">4.4</span> Generate citation file of R packages used to produce the report</a></li>
-<li><a href="#generate-appendix-with-citations-for-all-r-packages"><span class="toc-section-number">4.5</span> Generate Appendix with citations for all R packages</a><ul>
-<li><a href="#step-by-step-procedure-2"><span class="toc-section-number">4.5.1</span> Step-by-step procedure</a></li>
-</ul></li>
-<li><a href="#generate-appendix-with-r-package-versions-used-to-produce-report"><span class="toc-section-number">4.6</span> Generate Appendix with R package versions used to produce report</a></li>
-</ul></li>
-<li><a href="#all-set-good-to-go"><span class="toc-section-number">5</span> All set, good to go!</a></li>
-<li><a href="#insert-tables-and-figures-in-r-markdown-document"><span class="toc-section-number">6</span> Insert tables and figures in R Markdown document</a><ul>
-<li><a href="#tables"><span class="toc-section-number">6.1</span> Tables</a><ul>
-<li><a href="#step-by-step-protocol"><span class="toc-section-number">6.1.1</span> Step-by-step protocol</a></li>
-</ul></li>
-<li><a href="#figures"><span class="toc-section-number">6.2</span> Figures</a><ul>
-<li><a href="#step-by-step-protocol-1"><span class="toc-section-number">6.2.1</span> Step-by-step protocol</a></li>
-</ul></li>
-</ul></li>
-<li><a href="#cross-reference-tables-and-figures-in-the-text"><span class="toc-section-number">7</span> Cross-reference tables and figures in the text</a><ul>
-<li><a href="#general-syntax"><span class="toc-section-number">7.1</span> General syntax</a></li>
-<li><a href="#step-by-step-procedure-3"><span class="toc-section-number">7.2</span> Step-by-step procedure</a></li>
-</ul></li>
-<li><a href="#citing-references-in-text-and-adding-a-bibliographyreferences-section"><span class="toc-section-number">8</span> Citing references in text and adding a bibliography/references section</a><ul>
-<li><a href="#the-bibliography-file"><span class="toc-section-number">8.1</span> The bibliography file</a><ul>
-<li><a href="#procedure-to-do-prior-to-citing-references-in-an-r-markdown-document"><span class="toc-section-number">8.1.1</span> Procedure to do prior to citing references in an R Markdown document</a></li>
-</ul></li>
-<li><a href="#specifying-a-bibliography-in-the-r-markdown-file"><span class="toc-section-number">8.2</span> Specifying a bibliography in the R Markdown file</a></li>
-<li><a href="#bibtex-format"><span class="toc-section-number">8.3</span> BibTeX format</a></li>
-<li><a href="#citation-identifier"><span class="toc-section-number">8.4</span> Citation identifier</a></li>
-<li><a href="#citing-references"><span class="toc-section-number">8.5</span> Citing references</a><ul>
-<li><a href="#practice-citing-references"><span class="toc-section-number">8.5.1</span> Practice citing references</a></li>
-</ul></li>
-<li><a href="#adding-a-bibliographyreferences-section"><span class="toc-section-number">8.6</span> Adding a bibliography/references section</a></li>
-</ul></li>
-<li><a href="#formatting-citations-to-journal-styles"><span class="toc-section-number">9</span> Formatting citations to journal styles</a><ul>
-<li><a href="#what-is-the-citation-style-language-csl"><span class="toc-section-number">9.1</span> What is the citation style language (CSL)?</a></li>
-<li><a href="#csl-repositories"><span class="toc-section-number">9.2</span> CSL repositories</a></li>
-<li><a href="#how-to-use-a-csl-file-in-an-r-markdown-to-format-citations-and-bibliography"><span class="toc-section-number">9.3</span> How to use a CSL file in an R Markdown to format citations and bibliography?</a></li>
-</ul></li>
-<li><a href="#references"><span class="toc-section-number">10</span> References</a></li>
-<li class="appendix"><span><b>Appendix</b></span></li>
-<li><a href="#appendix-1"><span class="toc-section-number">A</span> Appendix 1</a></li>
-<li><a href="#appendix-2"><span class="toc-section-number">B</span> Appendix 2</a></li>
-</ul>
-</div>
 
 <div id="aim" class="section level1">
 <h1><span class="header-section-number">1</span> Aim</h1>
@@ -636,7 +653,7 @@ wants to recreate your analysis, they will know which packages they will need to
 ## Running under: macOS Mojave 10.14.6
 ## 
 ## Matrix products: default
-## BLAS:   /Library/Frameworks/R.framework/Versions/3.6/Resources/lib/libRblas.0.dylib
+## BLAS:   /System/Library/Frameworks/Accelerate.framework/Versions/A/Frameworks/vecLib.framework/Versions/A/libBLAS.dylib
 ## LAPACK: /Library/Frameworks/R.framework/Versions/3.6/Resources/lib/libRlapack.dylib
 ## 
 ## locale:
@@ -657,16 +674,16 @@ wants to recreate your analysis, they will know which packages they will need to
 ##  [9] plyr_1.8.5        backports_1.1.5   evaluate_0.14     highr_0.8        
 ## [13] httr_1.4.1        pillar_1.4.3      rlang_0.4.3       rstudioapi_0.10  
 ## [17] callr_3.4.1       desc_1.2.0        webshot_0.5.2     RefManageR_1.2.12
-## [21] readr_1.3.1       stringr_1.4.0     htmlwidgets_1.5.1 tinytex_0.19     
-## [25] munsell_0.5.0     compiler_3.6.1    xfun_0.16         pkgconfig_2.0.3  
-## [29] pkgbuild_1.0.6    tidyselect_0.2.5  tibble_2.1.3      fansi_0.4.1      
-## [33] viridisLite_0.3.0 crayon_1.3.4      withr_2.1.2       jsonlite_1.6     
-## [37] lifecycle_0.1.0   formatR_1.7       scales_1.1.1      bibtex_0.4.2.2   
-## [41] cli_2.0.1         stringi_1.4.5     fs_1.3.1          remotes_2.1.0    
-## [45] testthat_2.3.1    xml2_1.2.2        ellipsis_0.3.0    vctrs_0.2.2      
-## [49] tools_3.6.1       glue_1.3.1        purrr_0.3.3       hms_0.5.3        
-## [53] processx_3.4.1    pkgload_1.0.2     yaml_2.2.0        colorspace_1.4-1 
-## [57] sessioninfo_1.1.1 rvest_0.3.5       memoise_1.1.0</code></pre>
+## [21] readr_1.3.1       stringr_1.4.0     htmlwidgets_1.5.1 munsell_0.5.0    
+## [25] compiler_3.6.1    xfun_0.16         pkgconfig_2.0.3   pkgbuild_1.0.6   
+## [29] tidyselect_0.2.5  tibble_2.1.3      fansi_0.4.1       viridisLite_0.3.0
+## [33] crayon_1.3.4      withr_2.1.2       jsonlite_1.6      lifecycle_0.1.0  
+## [37] formatR_1.7       scales_1.1.1      bibtex_0.4.2.2    cli_2.0.1        
+## [41] stringi_1.4.5     fs_1.3.1          remotes_2.1.0     testthat_2.3.1   
+## [45] xml2_1.2.2        ellipsis_0.3.0    vctrs_0.2.2       tools_3.6.1      
+## [49] glue_1.3.1        purrr_0.3.3       hms_0.5.3         processx_3.4.1   
+## [53] pkgload_1.0.2     yaml_2.2.0        colorspace_1.4-1  sessioninfo_1.1.1
+## [57] rvest_0.3.5       memoise_1.1.0</code></pre>
 <p>I have also used the approach described above to add this information in <a href="#appendix-2">Appendix 2</a>.</p>
 </div>
 </div>
@@ -687,8 +704,120 @@ wants to recreate your analysis, they will know which packages they will need to
 </ul>
 <div id="step-by-step-protocol" class="section level3">
 <h3><span class="header-section-number">6.1.1</span> Step-by-step protocol</h3>
-<p>Here, you will learn the R Markdown syntax and R code required to replicate the grading scale presented in the Syllabus (see Table <a href="#tab:tabgrades"><strong>??</strong></a>):</p>
-
+<p>Here, you will learn the R Markdown syntax and R code required to replicate the grading scale presented in the Syllabus (see Table <a href="#tab:tabgrades">6.1</a>):</p>
+<table class="table table-striped" style="margin-left: auto; margin-right: auto;">
+<caption>
+<span id="tab:tabgrades">Table 6.1: </span>Grading scale applied in this class.
+</caption>
+<thead>
+<tr>
+<th style="text-align:left;">
+Percentage
+</th>
+<th style="text-align:left;">
+Grade
+</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td style="text-align:left;">
+100-98
+</td>
+<td style="text-align:left;">
+A+
+</td>
+</tr>
+<tr>
+<td style="text-align:left;">
+97.9-93
+</td>
+<td style="text-align:left;">
+A
+</td>
+</tr>
+<tr>
+<td style="text-align:left;">
+92.9-90
+</td>
+<td style="text-align:left;">
+A-
+</td>
+</tr>
+<tr>
+<td style="text-align:left;">
+89.9-88
+</td>
+<td style="text-align:left;">
+B+
+</td>
+</tr>
+<tr>
+<td style="text-align:left;">
+87.9-83
+</td>
+<td style="text-align:left;">
+B
+</td>
+</tr>
+<tr>
+<td style="text-align:left;">
+82.9-80
+</td>
+<td style="text-align:left;">
+B-
+</td>
+</tr>
+<tr>
+<td style="text-align:left;">
+79.9-78
+</td>
+<td style="text-align:left;">
+C+
+</td>
+</tr>
+<tr>
+<td style="text-align:left;">
+77.9-73
+</td>
+<td style="text-align:left;">
+C
+</td>
+</tr>
+<tr>
+<td style="text-align:left;">
+72.9-70
+</td>
+<td style="text-align:left;">
+C-
+</td>
+</tr>
+<tr>
+<td style="text-align:left;">
+69.9-68
+</td>
+<td style="text-align:left;">
+D+
+</td>
+</tr>
+<tr>
+<td style="text-align:left;">
+67.9-60
+</td>
+<td style="text-align:left;">
+D
+</td>
+</tr>
+<tr>
+<td style="text-align:left;">
+59.9-0
+</td>
+<td style="text-align:left;">
+F
+</td>
+</tr>
+</tbody>
+</table>
 <ol style="list-style-type: decimal">
 <li>Use the same <code>.Rmd</code> document as above to practice working with tables.</li>
 <li>Add a first-level header entitled <code>Tables</code>.</li>
@@ -744,10 +873,12 @@ plot(cars)</code></pre>
 <li>Edit the code chunk options line by adding the following arguments (each argument should be separated by a comma):</li>
 </ol>
 <ul>
-<li><code>echo=FALSE</code></li>
+<li><code>echo=FALSE</code>
+<ul>
 <li><code>results=&quot;hide&quot;</code></li>
 <li><code>fig.cap=&quot;Plot of cars' speed in relation to distance.&quot;</code></li>
 <li><code>out.width = '100%'</code></li>
+</ul></li>
 </ul>
 <ol start="6" style="list-style-type: decimal">
 <li>Add the unique label <code>cars</code> in the chunk options line (just after <code>{r</code>) to enable further cross-referencing.</li>
@@ -772,7 +903,7 @@ plot(cars)</code></pre>
 <div id="step-by-step-procedure-3" class="section level2">
 <h2><span class="header-section-number">7.2</span> Step-by-step procedure</h2>
 <p>To cross-reference the <code>tabgrades</code> table type:</p>
-<p><code>\@ref(tab:tabgrades)</code>, which translates into <a href="#tab:tabgrades"><strong>??</strong></a>.</p>
+<p><code>\@ref(tab:tabgrades)</code>, which translates into <a href="#tab:tabgrades">6.1</a>.</p>
 <p>To cross-reference the <code>cars</code> figure type:</p>
 <p><code>\@ref(fig:cars)</code>, which translates into <a href="#fig:cars">6.1</a>.</p>
 <p>Note the this syntax doesn’t automatically include the <code>Table</code> or <code>Figure</code> handles in front of the cross-reference. You will have to manually add <code>Table</code> or <code>Figure</code> in front of your <code>\@ref()</code> function.</p>
@@ -992,7 +1123,7 @@ Syntax</em>. R package version 1.1.0. 2019. &lt;URL:
 ## Running under: macOS Mojave 10.14.6
 ## 
 ## Matrix products: default
-## BLAS:   /Library/Frameworks/R.framework/Versions/3.6/Resources/lib/libRblas.0.dylib
+## BLAS:   /System/Library/Frameworks/Accelerate.framework/Versions/A/Frameworks/vecLib.framework/Versions/A/libBLAS.dylib
 ## LAPACK: /Library/Frameworks/R.framework/Versions/3.6/Resources/lib/libRlapack.dylib
 ## 
 ## locale:
@@ -1013,20 +1144,22 @@ Syntax</em>. R package version 1.1.0. 2019. &lt;URL:
 ##  [9] plyr_1.8.5        backports_1.1.5   evaluate_0.14     highr_0.8        
 ## [13] httr_1.4.1        pillar_1.4.3      rlang_0.4.3       rstudioapi_0.10  
 ## [17] callr_3.4.1       desc_1.2.0        webshot_0.5.2     RefManageR_1.2.12
-## [21] readr_1.3.1       stringr_1.4.0     htmlwidgets_1.5.1 tinytex_0.19     
-## [25] munsell_0.5.0     compiler_3.6.1    xfun_0.16         pkgconfig_2.0.3  
-## [29] pkgbuild_1.0.6    tidyselect_0.2.5  tibble_2.1.3      fansi_0.4.1      
-## [33] viridisLite_0.3.0 crayon_1.3.4      withr_2.1.2       jsonlite_1.6     
-## [37] lifecycle_0.1.0   formatR_1.7       scales_1.1.1      bibtex_0.4.2.2   
-## [41] cli_2.0.1         stringi_1.4.5     fs_1.3.1          remotes_2.1.0    
-## [45] testthat_2.3.1    xml2_1.2.2        ellipsis_0.3.0    vctrs_0.2.2      
-## [49] tools_3.6.1       glue_1.3.1        purrr_0.3.3       hms_0.5.3        
-## [53] processx_3.4.1    pkgload_1.0.2     yaml_2.2.0        colorspace_1.4-1 
-## [57] sessioninfo_1.1.1 rvest_0.3.5       memoise_1.1.0</code></pre>
+## [21] readr_1.3.1       stringr_1.4.0     htmlwidgets_1.5.1 munsell_0.5.0    
+## [25] compiler_3.6.1    xfun_0.16         pkgconfig_2.0.3   pkgbuild_1.0.6   
+## [29] tidyselect_0.2.5  tibble_2.1.3      fansi_0.4.1       viridisLite_0.3.0
+## [33] crayon_1.3.4      withr_2.1.2       jsonlite_1.6      lifecycle_0.1.0  
+## [37] formatR_1.7       scales_1.1.1      bibtex_0.4.2.2    cli_2.0.1        
+## [41] stringi_1.4.5     fs_1.3.1          remotes_2.1.0     testthat_2.3.1   
+## [45] xml2_1.2.2        ellipsis_0.3.0    vctrs_0.2.2       tools_3.6.1      
+## [49] glue_1.3.1        purrr_0.3.3       hms_0.5.3         processx_3.4.1   
+## [53] pkgload_1.0.2     yaml_2.2.0        colorspace_1.4-1  sessioninfo_1.1.1
+## [57] rvest_0.3.5       memoise_1.1.0</code></pre>
 </div>
 
 
 
+</div>
+</div>
 
 </div>
 
@@ -1059,6 +1192,32 @@ $(document).ready(function () {
 
 <!-- code folding -->
 
+<script>
+$(document).ready(function ()  {
+
+    // move toc-ignore selectors from section div to header
+    $('div.section.toc-ignore')
+        .removeClass('toc-ignore')
+        .children('h1,h2,h3,h4,h5').addClass('toc-ignore');
+
+    // establish options
+    var options = {
+      selectors: "h1,h2,h3",
+      theme: "bootstrap3",
+      context: '.toc-content',
+      hashGenerator: function (text) {
+        return text.replace(/[.\\/?&!#<>]/g, '').replace(/\s/g, '_').toLowerCase();
+      },
+      ignoreSelector: ".toc-ignore",
+      scrollTo: 0
+    };
+    options.showAndHide = true;
+    options.smoothScroll = true;
+
+    // tocify
+    var toc = $("#TOC").tocify(options).data("toc-tocify");
+});
+</script>
 
 <!-- dynamically load mathjax for compatibility with self-contained -->
 <script>

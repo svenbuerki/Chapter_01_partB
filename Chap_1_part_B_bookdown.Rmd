@@ -4,10 +4,9 @@ subtitle: "Part B: Tables, Figures and References with R bookdown and allied pac
 author: "Sven Buerki"
 date: "`r Sys.Date()`"
 output:
-  bookdown::pdf_document2:
-    toc: TRUE
   bookdown::html_document2: 
     toc: TRUE
+    toc_float: TRUE
 link-citations: yes
 fontsize: 12pt
 bibliography: [Bibliography_Reproducible_Science_2.bib, packages.bib]
